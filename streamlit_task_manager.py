@@ -7,14 +7,20 @@ TASKS_FILE = "D:/Downloads/tasks.txt"
 
 def load_tasks():
     tasks = []
-    try:
-        with open(TASKS_FILE, "r") as file:
-            for line in file:
-                task = line.strip()  
-                tasks.append(task)
-    except FileNotFoundError:
-        pass  #return an empty task list
-    return tasks
+    if os.path.exists(TASKS_FILE):  # Only attempt to read if the file exists
+     with open(TASKS_FILE, "r") as file:
+        for line in file:
+            task = line.strip()  # Only store the task description
+            tasks.append(task)
+
+    # try:
+    #     with open(TASKS_FILE, "r") as file:
+    #         for line in file:
+    #             task = line.strip()  
+    #             tasks.append(task)
+    # except FileNotFoundError:
+    #     pass  #return an empty task list
+    # return tasks
 
 def save_tasks(tasks):
     """Save tasks to the tasks file without completion status."""
